@@ -32,6 +32,12 @@ class UserInformation
      */
     private $birthday;
 
+    /**
+     * @ORM\OneToOne(targetEntity="User", inversedBy="company")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $userInformation;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -73,20 +79,22 @@ class UserInformation
         return $this;
     }
 
-    public function getName(): ?User
+    /**
+     * @return mixed
+     */
+    public function getUserInformation()
     {
-        return $this->name;
+        return $this->userInformation;
     }
 
-    public function setName(User $name): self
+    /**
+     * @param mixed $userInformation
+     */
+    public function setUserInformation($userInformation): void
     {
-        // set the owning side of the relation if necessary
-        if ($name->getUserInformation() !== $this) {
-            $name->setUserInformation($this);
-        }
-
-        $this->name = $name;
-
-        return $this;
+        $this->userInformation = $userInformation;
     }
+
+
+
 }

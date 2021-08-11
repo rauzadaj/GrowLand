@@ -9,7 +9,6 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
     This friendly message is coming from:
     <ul>
@@ -17,4 +16,18 @@
         <li>Your template at <code><a href="{{ '/var/www/html/GrowLand/templates/user/index.html.twig'|file_link(0) }}">templates/user/index.html.twig</a></code></li>
     </ul>
 </div>
+    {{ form(form) }}
+{#    {{ dump(form) }}#}
+{#    {{ form(form.userInformation(userType)) }}#}
+{#    {{ form_start(form) }}#}
+{#    {{ form_row(form.username) }}#}
+
+{#    <ul class="toto">#}
+{#        {% for user in form.userInformation %}#}
+{#            <li>{{ form_row(user.lastname) }}</li>#}
+{#            <li>{{ form_row(user.birthday) }}</li>#}
+{#            <li>{{ form_row(user.firstname) }}</li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#    {{ form_end(form) }}#}
 {% endblock %}

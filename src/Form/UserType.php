@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Entity\UserInformation;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,9 +16,11 @@ class UserType extends AbstractType
         $builder
             ->add('username')
             ->add('password')
-            ->add('created')
-            ->add('updated')
-            ->add('userInformation')
+            ->add('userInformation', UserInformationType::class,[
+                'data_class' => null
+            ])
+
+
         ;
     }
 

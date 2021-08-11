@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -39,10 +41,15 @@ class User
     private $updated;
 
     /**
-     * @ORM\OneToOne(targetEntity=UserInformation::class, inversedBy="name", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=UserInformation::class, mappedBy="userInformation",  cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $userInformation;
+
+    public function __construct()
+    {
+        $this->userInformation = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -97,15 +104,9 @@ class User
         return $this;
     }
 
-    public function getUserInformation(): ?UserInformation
+    public function getUserInformation(): Collection
     {
         return $this->userInformation;
     }
 
-    public function setUserInformation(UserInformation $userInformation): self
-    {
-        $this->userInformation = $userInformation;
-
-        return $this;
-    }
 }
